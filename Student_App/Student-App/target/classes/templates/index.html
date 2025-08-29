@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Crud Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+	<style>
+	        body {
+	            font-family: Arial, sans-serif;
+	            background-color: #f4f6f8;
+	            margin: 0;
+	        }
+
+	        /* Navbar */
+	        .navbar {
+	            background-color: #333;
+	            overflow: hidden;
+	            padding: 0.7rem 1rem;
+	        }
+	        .navbar a {
+	            float: left;
+	            color: #fff;
+	            padding: 0.7rem 1rem;
+	            text-decoration: none;
+	        }
+	        .navbar a:hover {
+	            background-color: #575757;
+	        }
+
+	        /* Container */
+	        .container {
+	            max-width: 900px;
+	            margin: 2rem auto;
+	            background: white;
+	            padding: 2rem;
+	            border-radius: 8px;
+	            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+	        }
+
+	        h2 {
+	            color: #333;
+	            margin-bottom: 1rem;
+	            text-align: center;
+	        }
+
+	        /* Form */
+	        form {
+	            display: grid;
+	            grid-template-columns: 1fr 1fr;
+	            gap: 1rem 2rem;
+	            margin-bottom: 2rem;
+	        }
+	        form label {
+	            font-weight: bold;
+	            color: #444;
+	        }
+	        form input {
+	            padding: 0.6rem;
+	            border: 1px solid #ccc;
+	            border-radius: 4px;
+	            width: 100%;
+	        }
+	        form button {
+	            grid-column: span 2;
+	            padding: 0.7rem;
+	            background-color: #007BFF;
+	            border: none;
+	            color: white;
+	            font-size: 1rem;
+	            border-radius: 4px;
+	            cursor: pointer;
+	        }
+	        form button:hover {
+	            background-color: #0056b3;
+	        }
+
+	        /* Table */
+	        table {
+	            width: 100%;
+	            border-collapse: collapse;
+	            margin-top: 1rem;
+	        }
+	        table th, table td {
+	            border: 1px solid #ddd;
+	            padding: 0.8rem;
+	            text-align: center;
+	        }
+	        table th {
+	            background-color: #007BFF;
+	            color: white;
+	        }
+	        table tr:nth-child(even) {
+	            background-color: #f9f9f9;
+	        }
+	        table tr:hover {
+	            background-color: #f1f1f1;
+	        }
+
+	        /* Action Icons */
+	        .fa-pen-to-square {
+	            color: #0300a3;
+	            margin-right: 0.5rem;
+	        }
+	        .fa-trash {
+	            color: #ff351f;
+	        }
+	    </style>
+</head>
+<body>
+	<div class="navbar">
+	        <a th:href="@{/}">Home</a>
+	        <a th:href="@{/students}">Student List</a>
+	        <a th:href="@{/add}">Add Student</a>
+	    </div>
+    <h2>Add Student here!</h2>
+
+    <form th:action="@{/save}" th:object="${student}" method="post">
+        Student Name: <input type="text" th:field="*{studentName}"><br>
+        Student Class: <input type="text" th:field="*{studentClass}"><br>
+		Student RollNo: <input type="text" th:field="*{studentRollNo}"><br>
+		Student Gender: <input type="text" th:field="*{studentGender}"><br>
+		Student Dob: <input type="text" th:field="*{studentDob}"><br>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>All Student Data</h2>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Student Name</th>
+            <th>Student Class</th>
+			<th>Student RollNo</th>
+			<th>Student Gender</th>
+			<th>Student Dob</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="c : ${list}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.studentName}"></td>
+            <td th:text="${c.studentClass}"></td>
+			<td th:text="${c.studentRollNo}"></td>
+			<td th:text="${c.studentGender}"></td>
+			<td th:text="${c.studentDob}"></td>
+            <td>
+                <a th:href="@{'/edit/' + ${c.id}}"><i class="fa-solid fa-pen-to-square" style="color: #0300a3;"></i></a>
+                <a th:href="@{'/delete/' + ${c.id}}"><i class="fa-solid fa-trash" style="color: #ff351f;"></i></a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

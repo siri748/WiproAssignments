@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+     <title >Edit StudentData</title>
+	 <style>
+	         body {
+	             font-family: Arial, sans-serif;
+	             margin: 0;
+	             background-color: #f4f6f8;
+	         }
+
+	         /* Navbar */
+	         .navbar {
+	             background-color: #333;
+	             overflow: hidden;
+	             padding: 0.7rem 1rem;
+	         }
+	         .navbar a {
+	             float: left;
+	             color: #fff;
+	             text-align: center;
+	             padding: 0.7rem 1rem;
+	             text-decoration: none;
+	         }
+	         .navbar a:hover {
+	             background-color: #575757;
+	         }
+
+	         /* Container */
+	         .container {
+	             max-width: 500px;
+	             margin: 2rem auto;
+	             background: white;
+	             padding: 2rem;
+	             border-radius: 8px;
+	             box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+	         }
+
+	         h2 {
+	             text-align: center;
+	             margin-bottom: 1.5rem;
+	             color: #333;
+	         }
+
+	         /* Form styling */
+	         form label {
+	             display: block;
+	             margin-top: 1rem;
+	             font-weight: bold;
+	             color: #444;
+	         }
+
+	         form input {
+	             width: 100%;
+	             padding: 0.6rem;
+	             margin-top: 0.3rem;
+	             border: 1px solid #ccc;
+	             border-radius: 4px;
+	         }
+
+	         button {
+	             margin-top: 1.5rem;
+	             width: 100%;
+	             padding: 0.7rem;
+	             background-color: #007BFF;
+	             color: white;
+	             border: none;
+	             font-size: 1rem;
+	             border-radius: 4px;
+	             cursor: pointer;
+	         }
+
+	         button:hover {
+	             background-color: #0056b3;
+	         }
+	     </style>
+     
+</head>
+<body>
+	<!-- Navbar -->
+	   <div class="navbar">
+	       <a th:href="@{/}">Home</a>
+	       <a th:href="@{/students}">Student List</a>
+	       <a th:href="@{/add}">Add Student</a>
+	   </div>
+      <h2> Edit Student here!</h2>
+      
+      <form th:action="@{/update}" th:object="${student}" method="post">
+              <input type="hidden" th:field="*{id}"><br>
+           Student Name:-<input type="text" th:field="*{studentName}"><br>
+           Student Class:-<input type="text" th:field="*{studentClass}"><br>
+		   Student RollNo:-<input type="text" th:field="*{studentRollNo}"><br>
+		   Student Gender:-<input type="text" th:field="*{studentGender}"><br>
+		   Student Dob:-<input type="text" th:field="*{studentDob}"><br>
+           <button type="submit">update</button>
+      </form>
+
+      </body>
+</html>
