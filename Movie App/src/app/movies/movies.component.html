@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Movie & K-Drama List</h2>
+
+  <div class="movies-container">
+    <div class="movie-card" *ngFor="let movie of movies">
+      <img [src]="movie.image" [alt]="movie.title" class="movie-img">
+      <h3>{{ movie.title }}</h3>
+      <p><strong>Genre:</strong> {{ movie.genre }}</p>
+      <p><strong>Year:</strong> {{ movie.year }}</p>
+    </div>
+  </div>
+</div>
