@@ -1,0 +1,36 @@
+h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.song-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+button {
+  height: 35px;
+  border: none;
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #ff7875;
+}
+
+.add-song-form {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.add-song-form input {
+  padding: 5px;
+  flex: 1;
+}

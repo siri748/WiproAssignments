@@ -1,0 +1,13 @@
+<h2>Shreya Ghoshal Telugu Songs Playlist</h2>
+
+<div class="add-song-form">
+  <input type="text" placeholder="Song Title" [(ngModel)]="newSongTitle">
+  <input type="text" placeholder="Artist" [(ngModel)]="newSongArtist">
+  <input type="text" placeholder="Song URL" [(ngModel)]="newSongUrl">
+  <button (click)="addSong()">Add Song</button>
+</div>
+
+<div *ngFor="let song of songs" class="song-wrapper">
+  <app-song [song]="song"></app-song>
+  <button (click)="removeSong(song.id)">Remove</button>
+</div>
