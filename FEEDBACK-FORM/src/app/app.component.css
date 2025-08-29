@@ -1,0 +1,51 @@
+.feedback-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+.feedback-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-title {
+  text-align: center;
+  color: #3f51b5;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #b0bec5;
+  color: white;
+}
+
+.submit-button:disabled {
+  background-color: #e0e0e0;
+  color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.thank-you-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
