@@ -1,0 +1,97 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">📝 ToDo List</h2>
+
+  <!-- Add Task Form -->
+  <div class="card p-3 mb-4 shadow-sm">
+    <h5>Add New Task</h5>
+    <div class="row g-2">
+      <div class="col-md-6">
+        <input [(ngModel)]="newTask.taskDesc" class="form-control" placeholder="Task description" />
+      </div>
+      <div class="col-md-3">
+        <select [(ngModel)]="newTask.priority" class="form-select">
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button (click)="addTask()" class="btn btn-success w-100">Add Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task List -->
+  <div class="card p-3 shadow-sm">
+    <h5>Tasks</h5>
+    <table class="table table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Description</th>
+          <th>Priority</th>
+          <th>Created At</th>
+          <th>Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td [class.text-decoration-line-through]="task.completed">{{ task.taskDesc }}</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{'bg-success': task.priority==='LOW', 'bg-warning': task.priority==='MEDIUM', 'bg-danger': task.priority==='HIGH'}">
+              {{ task.priority }}
+            </span>
+          </td>
+          <td>{{ task.createdAt | date:'short' }}</td>
+          <td>
+            <span class="badge" [ngClass]="task.completed ? 'bg-success' : 'bg-secondary'">
+              {{ task.completed ? 'Completed' : 'Pending' }}
+            </span>
+          </td>
+          <td class="text-center">
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="toggleCompletion(task)">
+              {{ task.completed ? 'Undo' : 'Complete' }}
+            </button>
+            <button class="btn btn-sm btn-outline-warning me-2" (click)="editTask(task)">Edit</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task.id!)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Task Modal -->
+  <div *ngIf="editingTask" class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content shadow">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Task</h5>
+          <button type="button" class="btn-close" (click)="editingTask = null"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label>Description</label>
+            <input [(ngModel)]="editingTask.taskDesc" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label>Priority</label>
+            <select [(ngModel)]="editingTask.priority" class="form-select">
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="editingTask.completed" />
+            <label class="form-check-label">Completed</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="editingTask = null">Cancel</button>
+          <button class="btn btn-primary" (click)="updateTask()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
